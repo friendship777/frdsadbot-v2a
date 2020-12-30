@@ -50,17 +50,21 @@ async def on_message(message):
     id = message.author.id #id라는 변수에는 메시지를 보낸사람의 ID를 담습니다.
     channel = message.channel #channel이라는 변수에는 메시지를 받은 채널의 ID를 담습니다.
 
-    if message.content.startswith('/조회'):
+    if message.content.startswith('/서버정보'):
         channel = message.channel
-        await channel.send('유저조회를 시작합니다...🔍')
-        await channel.send('')
-        await channel.send('잠시만 기다려주세요...🕓')
-        await channel.send('')
-        await channel.send('유저의 ID를 조회하는중입니다...🔍')
-        await channel.send('')
-        await channel.send('유저ID 조회가 거의 완료되었습니다...📊')
-        await channel.send('')
-        await channel.send('유저ID 조회완료!✅')
+        await channel.send('**Friendship hub** (은)는 **2020년 4월 27일**에 개설된 서버이며,')
+        await channel.send('서버의 소유권을 가지고 있는 유저는 **우정#9444** 님 입니다.')
+    if message.content.startswith('/디코주소'):
+        channel = message.channel
+        await channel.send('**https://discord.gg/nEzPCjd**')
+        await channel.send('**Friendship hub** 의 공식 디스코드 주소입니다.')
+    if message.content.startswith('/도움'):
+        channel = message.channel
+        await channel.send('도움을 요청하셨네요.')
+        await channel.send('저를 이용할 수 있는 명령어를 알려드릴게요.')
+        await channel.send('접두사는 **/** 입니다.')
+        await channel.send('명령어는 [서버정보 / 디코주소] - 총 2가지입니다.')
+
 
 access_token = os.environ['BOT_TOKEN']
 client.run(access_token)
