@@ -1,1 +1,1 @@
-worker: python frds.py
+worker: python adbot-v2.py
