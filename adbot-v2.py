@@ -56,7 +56,7 @@ async def on_message(message):
         await channel.send('서버의 소유권을 가지고 있는 유저는 **우정#9444** 님 입니다.')
     if message.content.startswith('/디코주소'):
         channel = message.channel
-        await channel.send('**https://discord.gg/nEzPCjd**')
+        await channel.send('https://discord.gg/nEzPCjd')
         await channel.send('**Friendship hub** 의 공식 디스코드 주소입니다.')
     if message.content.startswith('/도움'):
         channel = message.channel
