@@ -62,8 +62,8 @@ async def on_message(message):
         channel = message.channel
         await channel.send('도움을 요청하셨네요.')
         await channel.send('저를 이용할 수 있는 명령어를 알려드릴게요.')
-        await channel.send('접두사는 **/** 입니다.')
-        await channel.send('명령어는 [서버정보 / 디코주소] - 총 2가지입니다.')
+        await channel.send('> 접두사는 **/** 입니다.')
+        await channel.send('> 명령어는 [서버정보 / 디코주소] - 총 2가지입니다.')
 
 
 access_token = os.environ['BOT_TOKEN']
