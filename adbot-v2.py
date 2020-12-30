@@ -30,7 +30,7 @@ async def on_ready():
         game = discord.Game("24시간 풀 가동")
         await client.change_presence(status=discord.Status.dnd, activity=game)
         await asyncio.sleep(3)
-        game = discord.Game("유저 관리")
+        game = discord.Game("유저 조회")
         await client.change_presence(status=discord.Status.dnd, activity=game)
         await asyncio.sleep(3)
         game = discord.Game("Powerd by PYTHON")
@@ -52,10 +52,14 @@ async def on_message(message):
 
     if message.content.startswith('/조회'):
         channel = message.channel
-        await channel.send('유저ID 조회를 시작합니다...🔍')
+        await channel.send('유저조회를 시작합니다...🔍')
+        await channel.send('')
         await channel.send('잠시만 기다려주세요...🕓')
+        await channel.send('')
         await channel.send('유저의 ID를 조회하는중입니다...🔍')
+        await channel.send('')
         await channel.send('유저ID 조회가 거의 완료되었습니다...📊')
+        await channel.send('')
         await channel.send('유저ID 조회완료!✅')
 
 access_token = os.environ['BOT_TOKEN']
