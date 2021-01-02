@@ -85,7 +85,7 @@ async def on_message(message):
             await message.channel.send(f"{message.author.mention}님,\n⌛ 타이머를 설정할 초를 적어주세요.") # 몇 초를 맞추라는지 출력한다.
         else: #그렇지 않다면
             timer = int (message.content.split(" ")[1]) # 타이머를 숫자만큼 지정한다.
-            await message.channel.send(f"{message.author.mention}님,\n✅ 타이머가 설정되었습니다.\n🕑 시간이 끝나면 맨션해드릴게요.") # 설정 완료 메시지를 보낸다.
+            await message.channel.send(f"{message.author.mention}님,\n✅ 타이머가 설정되었습니다.\n🕑 시간이 끝나면 알려드릴게요.") # 설정 완료 메시지를 보낸다.
             await asyncio.sleep(timer) # 그 숫자만큼 대기한다.
             await message.channel.send(f"{message.author.mention}님,\n⏳ 타이머가 끝났습니다.") # 타이머가 끝났음을 알린다.
 
