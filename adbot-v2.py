@@ -72,11 +72,11 @@ async def on_message(message):
                 number = int(message.content.split(" ")[1]) # 입력한 숫자만큼 number 변수에 집어넣는다
                 await message.delete() # 그만큼 메시지를 지운다
                 await message.channel.purge(limit=number) # 대기한다
-                a = await message.channel.send(f"{message.author.mention}님,  \n🟩 {number}개의 메시지를 삭제했습니다.\n( 이 메시지는 잠시 후에 삭제됩니다. )") # 메시지 삭제 성공을 알린다.
+                a = await message.channel.send(f"{message.author.mention}님,  \n✅ {number}개의 메시지를 삭제했습니다.\n( 이 메시지는 잠시 후에 삭제됩니다. )") # 메시지 삭제 성공을 알린다.
                 await asyncio.sleep(2) # 2초 동안 대기한다.
                 await a.delete() # 삭제했다는 메시지를 삭제한다.
             else: # 아니라면 (관리자 권한이 없다면)
-                await message.channel.send(f"{message.author.mention}님,  \n🟥 관리자 권한이 없어 명령어를 실행할 수 없습니다.") # 관리자 권한이 없다는 것을 알린다.
+                await message.channel.send(f"{message.author.mention}님,  \n❌ 관리자 권한이 없어 명령어를 실행할 수 없습니다.") # 관리자 권한이 없다는 것을 알린다.
     if message.content == "/핑":
         la = client.latency
         await message.channel.send(f'{message.author.mention}님,\n📡 당신의 핑은 {str(round(la * 1000))}ms 입니다.')
