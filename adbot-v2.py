@@ -66,7 +66,7 @@ async def on_message(message):
         await channel.send('> 명령어는 [서버정보 / 디코주소] - 총 2가지입니다.')
     if message.content.startswith("/청소"):
         if message.content == "/청소":
-            await message.channel.send(f"{message.author.mention} ,  \n명령어가 인식되지 않았습니다. (올바른명령어는 ("/청소 1~99)입니다.")
+            await message.channel.send(f"{message.author.mention} ,  \n명령어가 인식되지 않았습니다. 올바른명령어를 입력해주세요.
         else:
             if message.author.guild_permissions.administrator:
                 number = int(message.content.split(" ")[1])
