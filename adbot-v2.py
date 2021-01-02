@@ -66,15 +66,15 @@ async def on_message(message):
         await channel.send('> 명령어는 [서버정보 / 디코주소] - 총 2가지입니다.')
     if message.content.startswith("/청소"):
         if message.content == "/청소":
-            await message.channel.send(f"{message.author.mention} ,  \n그래서 몇 개를 치우라고요?올바른 명령어는 '/청소 (청소할 개수)'에요")
+            await message.channel.send(f"{message.author.mention} ,  \n명령어가 인식되지 않았습니다. (올바른명령어는 ("/청소 1~99)입니다.")
         else:
             if message.author.guild_permissions.administrator:
                 number = int(message.content.split(" ")[1])
                 await message.delete()
                 await message.channel.purge(limit=number)
-                a = await message.channel.send(f"{message.author.mention}님 ,  \n{number}개의 메시지를 관리자의 의하여 삭제했습니다.")
+                a = await message.channel.send(f"{message.author.mention}님이  \n{number}개의 메시지를 삭제했습니다.")
             else:
-                await message.channel.send(f"{message.author.mention} ,  \n님은 권한이 없어요.")
+                await message.channel.send(f"{message.author.mention} ,  \n님은 관리자 권한이 없어요.")
 
 
 access_token = os.environ['BOT_TOKEN']
