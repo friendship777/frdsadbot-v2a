@@ -80,6 +80,14 @@ async def on_message(message):
     if message.content == "/핑":
         la = client.latency
         await message.channel.send(f'{message.author.mention}님의 핑은 {str(round(la * 1000))}ms 입니다.')
+    if message.content.startswith('/타이머'): # `/타이머` 라는 메시지를 받았을 때
+        if message.content == '/타이머': # 만약 메시지가 숫자 없이 `/타이머` 만 있다면
+            await message.channel.send(f"{message.author.mention} \n그래서 몇 초를 맞추라고요?\n올바른 명령어는 `/타이머 (숫자)` 에요!") # 몇 초를 맞추라는지 출력한다.
+        else: #그렇지 않다면
+            timer = int (message.content.split(" ")[1]) # 타이머를 숫자만큼 지정한다.
+            await message.channel.send(f"{message.author.mention} ,\n타이머가 설정되었습니다.\n시간이 끝나면 맨션해드릴게요!") # 설정 완료 메시지를 보낸다.
+            await asyncio.sleep(timer) # 그 숫자만큼 대기한다.
+            await message.channel.send(f"{message.author.mention} ,\n타이머가 끝났어요!") # 타이머가 끝났음을 알린다.
 
 
 access_token = os.environ['BOT_TOKEN']
