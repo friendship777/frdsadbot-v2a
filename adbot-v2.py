@@ -88,6 +88,50 @@ async def on_message(message):
             await message.channel.send(f"{message.author.mention}님,\n타이머가 설정되었습니다.\n시간이 끝나면 맨션해드릴게요.") # 설정 완료 메시지를 보낸다.
             await asyncio.sleep(timer) # 그 숫자만큼 대기한다.
             await message.channel.send(f"{message.author.mention}님,\n타이머가 끝났습니다.") # 타이머가 끝났음을 알린다.
+    @commands.bot_has_permissions(manage_roles=True)
+    @commands.command()
+    async def 뮤트(self, ctx, member : discord.Member, time = 0, reason = "None"):
+
+        role = discord.utils.get(ctx.guild.roles, name="Muted")
+
+        if reason == "None":
+            reason = "사유없음"
+
+        if member.id == ctx.author.id:
+                await ctx.channel.purge(limit=1)
+                await ctx.send("스스로를 뮤트할 수 없습니다")
+                await asyncio.sleep(1)
+                await ctx.channel.purge(limit=1)
+                return   
+                
+        retime=time*3600
+
+        if role in ctx.guild.roles:
+            await ctx.channel.purge(limit=1)
+            await ctx.channel.set_permissions(role, send_messages=False, read_messages=True, read_message_history=True)
+            await member.add_roles(role)
+            embed = discord.Embed(title='뮤트알림', description="", color=0x003458)
+            embed.add_field(name="대상", value=f'{member.mention}', inline=False)
+            embed.add_field(name="기간", value=f'{time}시간', inline=False)
+            embed.add_field(name="소통", value=f'{reason}', inline=False)            
+            await ctx.channel.send(embed=embed)
+            await asyncio.sleep(retime)
+            await member.remove_roles(role)
+
+        else:
+            await ctx.channel.purge(limit=1)
+            guild = ctx.guild
+            perms = discord.Permissions(send_messages=False, read_messages=True)
+            await guild.create_role(name="Muted", permissions=perms)
+            await ctx.channel.set_permissions(role, send_messages=False, read_messages=True, read_message_history=True)
+            await member.add_roles(role)
+            embed = discord.Embed(title='뮤트알림', description="", color=0x003458)
+            embed.add_field(name="대상", value=f'{member.mention}', inline=False)
+            embed.add_field(name="기간", value=f'{time}시간', inline=False)
+            embed.add_field(name="소통", value=f'{reason}', inline=False)
+            await ctx.channel.send(embed=embed)
+            await asyncio.sleep(retime)
+            await member.remove_roles(role)
 
 
 access_token = os.environ['BOT_TOKEN']
