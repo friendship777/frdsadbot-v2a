@@ -60,10 +60,10 @@ async def on_message(message):
         await channel.send('**📊 Friendship hub** 의 공식 디스코드 주소입니다.')
     if message.content.startswith('/도움'):
         channel = message.channel
-        await channel.send('도움을 요청하셨네요.')
-        await channel.send('저를 이용할 수 있는 명령어를 알려드릴게요.')
-        await channel.send('> 접두사는 **/** 입니다.')
-        await channel.send('> 명령어 목록입니다.\n> 서버정보\n> 디코주소\n > 핑\n> 타이머')
+        await channel.send('🖐 도움을 요청하셨네요.')
+        await channel.send('📃 저를 이용할 수 있는 명령어를 알려드릴게요.')
+        await channel.send('> 💬 접두사는 **/** 입니다.')
+        await channel.send('> 📃 명령어 목록입니다.\n> 서버정보\n> 디코주소\n > 핑\n> 타이머')
     if message.content.startswith("/청소"): # `/청소` 라는 메시지로 시작되었을 때
         if message.content == '/청소': # 메시지가 숫자 없이 `/청소` 만 있다면
             await message.channel.send(f"{message.author.mention}님,  \n💬 청소할 메시지의 수를 적어주세요.") # 숫자를 넣어 달라고 말한다.
