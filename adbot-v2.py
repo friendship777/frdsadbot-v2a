@@ -80,12 +80,6 @@ async def on_message(message):
     if message.content == "/핑":
         la = client.latency
         await message.channel.send(f'{message.author.mention}님의 핑은 {str(round(la * 1000))}ms 입니다.')
-    if message.content == '!핑':
-        embed = discord.Embed(title=':ping_pong:', description='**Pong !**', color= 0x0000ff) #embed라는 변수를 지정, 색깔을 0x0000ff로 지정, 제목을 ":ping:pong:", 내용을 "Pong !" 이라고 지정한다.
-        embed.set_footer(text=message.author, icon_url=message.author.avatar_url) #embed 변수의 footer를 설정, 글을 메세지를 입력한 사람의 태그로 지정하고 아이콘을 메세지를 입력한 사람의 아바타 (프로필 사진) 으로 지정한다.
-        embed.set_thumbnail(url="여기서 썸네일을 지정하세요") # 썸네일 지정 코드, 쓰고 싶지 않으시다면 이 줄을 지우면 된다.
-        embed.add_field(name = '`Ping`', value = str(client.latency*1000) + 'ms') # 필트 지정 코드, name 은 제목을, value는 내용을 나타낸다.
-        await message.channel.send(embed=embed) #메세지를 입력한 채널에 embed를 보낸다.
 
 
 access_token = os.environ['BOT_TOKEN']
