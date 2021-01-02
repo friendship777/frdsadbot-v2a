@@ -52,12 +52,12 @@ async def on_message(message):
 
     if message.content.startswith('/서버정보'):
         channel = message.channel
-        await channel.send('**Friendship hub** (은)는 **2020년 4월 27일**에 개설된 서버이며,')
-        await channel.send('서버의 소유권을 가지고 있는 유저는 **우정#9444** 님 입니다.')
+        await channel.send('**📅 Friendship hub** (은)는 **2020년 4월 27일**에 개설된 서버이며,')
+        await channel.send('👑 서버의 소유권을 가지고 있는 유저는 **우정#9444** 님 입니다.')
     if message.content.startswith('/디코주소'):
         channel = message.channel
         await channel.send('https://discord.gg/nEzPCjd')
-        await channel.send('**Friendship hub** 의 공식 디스코드 주소입니다.')
+        await channel.send('**📊 Friendship hub** 의 공식 디스코드 주소입니다.')
     if message.content.startswith('/도움'):
         channel = message.channel
         await channel.send('도움을 요청하셨네요.')
@@ -66,72 +66,28 @@ async def on_message(message):
         await channel.send('> 명령어는 [서버정보 / 디코주소] - 총 2가지입니다.')
     if message.content.startswith("/청소"): # `/청소` 라는 메시지로 시작되었을 때
         if message.content == '/청소': # 메시지가 숫자 없이 `/청소` 만 있다면
-            await message.channel.send(f"{message.author.mention}님,  \n청소할 메시지의 수를 적어주세요.") # 숫자를 넣어 달라고 말한다.
+            await message.channel.send(f"{message.author.mention}님,  \n💬 청소할 메시지의 수를 적어주세요.") # 숫자를 넣어 달라고 말한다.
         else: # 아니라면 (숫자가 정상적으로 있다면)
             if message.author.guild_permissions.administrator: # 만약 명령어를 실행한 유저가 관리자 권한을 가지고 있다면
                 number = int(message.content.split(" ")[1]) # 입력한 숫자만큼 number 변수에 집어넣는다
                 await message.delete() # 그만큼 메시지를 지운다
                 await message.channel.purge(limit=number) # 대기한다
-                a = await message.channel.send(f"{message.author.mention}님,  \n{number}개의 메시지를 삭제했습니다.\n( 이 메시지는 잠시 후에 삭제됩니다. )") # 메시지 삭제 성공을 알린다.
+                a = await message.channel.send(f"{message.author.mention}님,  \n🟩 {number}개의 메시지를 삭제했습니다.\n( 이 메시지는 잠시 후에 삭제됩니다. )") # 메시지 삭제 성공을 알린다.
                 await asyncio.sleep(2) # 2초 동안 대기한다.
                 await a.delete() # 삭제했다는 메시지를 삭제한다.
             else: # 아니라면 (관리자 권한이 없다면)
-                await message.channel.send(f"{message.author.mention}님,  \n관리자 권한이 없어 명령어를 실행할 수 없습니다.") # 관리자 권한이 없다는 것을 알린다.
+                await message.channel.send(f"{message.author.mention}님,  \n🟥 관리자 권한이 없어 명령어를 실행할 수 없습니다.") # 관리자 권한이 없다는 것을 알린다.
     if message.content == "/핑":
         la = client.latency
-        await message.channel.send(f'{message.author.mention}님,\n당신의 핑은 {str(round(la * 1000))}ms 입니다.')
+        await message.channel.send(f'{message.author.mention}님,\n📡 당신의 핑은 {str(round(la * 1000))}ms 입니다.')
     if message.content.startswith('/타이머'): # `/타이머` 라는 메시지를 받았을 때
         if message.content == '/타이머': # 만약 메시지가 숫자 없이 `/타이머` 만 있다면
-            await message.channel.send(f"{message.author.mention}님,\n타이머를 설정할 초를 적어주세요.") # 몇 초를 맞추라는지 출력한다.
+            await message.channel.send(f"{message.author.mention}님,\n⌛ 타이머를 설정할 초를 적어주세요.") # 몇 초를 맞추라는지 출력한다.
         else: #그렇지 않다면
             timer = int (message.content.split(" ")[1]) # 타이머를 숫자만큼 지정한다.
-            await message.channel.send(f"{message.author.mention}님,\n타이머가 설정되었습니다.\n시간이 끝나면 맨션해드릴게요.") # 설정 완료 메시지를 보낸다.
+            await message.channel.send(f"{message.author.mention}님,\n✅ 타이머가 설정되었습니다.\n🕑 시간이 끝나면 맨션해드릴게요.") # 설정 완료 메시지를 보낸다.
             await asyncio.sleep(timer) # 그 숫자만큼 대기한다.
-            await message.channel.send(f"{message.author.mention}님,\n타이머가 끝났습니다.") # 타이머가 끝났음을 알린다.
-    @commands.bot_has_permissions(manage_roles=True)
-    @commands.command()
-    async def 뮤트(self, ctx, member : discord.Member, time = 0, reason = "None"):
-
-        role = discord.utils.get(ctx.guild.roles, name="Muted")
-
-        if reason == "None":
-            reason = "사유없음"
-
-        if member.id == ctx.author.id:
-                await ctx.channel.purge(limit=1)
-                await ctx.send("스스로를 뮤트할 수 없습니다")
-                await asyncio.sleep(1)
-                await ctx.channel.purge(limit=1)
-                return   
-                
-        retime=time*3600
-
-        if role in ctx.guild.roles:
-            await ctx.channel.purge(limit=1)
-            await ctx.channel.set_permissions(role, send_messages=False, read_messages=True, read_message_history=True)
-            await member.add_roles(role)
-            embed = discord.Embed(title='뮤트알림', description="", color=0x003458)
-            embed.add_field(name="대상", value=f'{member.mention}', inline=False)
-            embed.add_field(name="기간", value=f'{time}시간', inline=False)
-            embed.add_field(name="소통", value=f'{reason}', inline=False)            
-            await ctx.channel.send(embed=embed)
-            await asyncio.sleep(retime)
-            await member.remove_roles(role)
-
-        else:
-            await ctx.channel.purge(limit=1)
-            guild = ctx.guild
-            perms = discord.Permissions(send_messages=False, read_messages=True)
-            await guild.create_role(name="Muted", permissions=perms)
-            await ctx.channel.set_permissions(role, send_messages=False, read_messages=True, read_message_history=True)
-            await member.add_roles(role)
-            embed = discord.Embed(title='뮤트알림', description="", color=0x003458)
-            embed.add_field(name="대상", value=f'{member.mention}', inline=False)
-            embed.add_field(name="기간", value=f'{time}시간', inline=False)
-            embed.add_field(name="소통", value=f'{reason}', inline=False)
-            await ctx.channel.send(embed=embed)
-            await asyncio.sleep(retime)
-            await member.remove_roles(role)
+            await message.channel.send(f"{message.author.mention}님,\n⏳ 타이머가 끝났습니다.") # 타이머가 끝났음을 알린다.
 
 
 access_token = os.environ['BOT_TOKEN']
