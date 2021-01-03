@@ -69,7 +69,7 @@ async def on_message(message):
         await channel.send('> 📃 명령어 목록입니다.\n> __**서버정보**__\n> **__디코주소__**\n > **__핑__**\n> **__타이머__**')
     if message.content.startswith("/청소"): # `/청소` 라는 메시지로 시작되었을 때
         if message.content == '/청소': # 메시지가 숫자 없이 `/청소` 만 있다면
-            await message.channel.send(f"{message.author.mention}님,  \n💬 청소할 메시지의 수를 적어주세요.") # 숫자를 넣어 달라고 말한다.
+            await message.channel.send(f"{message.author.mention}님,  \n💨 청소할 메시지의 수를 적어주세요.") # 숫자를 넣어 달라고 말한다.
         else: # 아니라면 (숫자가 정상적으로 있다면)
             if message.author.guild_permissions.administrator: # 만약 명령어를 실행한 유저가 관리자 권한을 가지고 있다면
                 number = int(message.content.split(" ")[1]) # 입력한 숫자만큼 number 변수에 집어넣는다
