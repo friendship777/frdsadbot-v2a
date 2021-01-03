@@ -91,6 +91,10 @@ async def on_message(message):
             await message.channel.send(f"{message.author.mention}님,\n✅ 타이머가 설정되었습니다.\n🕑 시간이 끝나면 알려드릴게요.") # 설정 완료 메시지를 보낸다.
             await asyncio.sleep(timer) # 그 숫자만큼 대기한다.
             await message.channel.send(f"{message.author.mention}님,\n⏳ 타이머가 끝났습니다.") # 타이머가 끝났음을 알린다.
+    if message.content.startswith('/뮤트'): # `/뮤트` 라는 메시지를 받았을 때
+        author = message.guild.get_member(int(message.content[4:22]))
+        role = discord.utils.get(message.guild.roles, name ="⛔｜M U T E D")
+        await author.add_roles(role)
 
 
 access_token = os.environ['BOT_TOKEN']
