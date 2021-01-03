@@ -91,31 +91,6 @@ async def on_message(message):
             await message.channel.send(f"{message.author.mention}님,\n✅ 타이머가 설정되었습니다.\n🕑 시간이 끝나면 알려드릴게요.") # 설정 완료 메시지를 보낸다.
             await asyncio.sleep(timer) # 그 숫자만큼 대기한다.
             await message.channel.send(f"{message.author.mention}님,\n⏳ 타이머가 끝났습니다.") # 타이머가 끝났음을 알린다.
-    if(message.content.split(" ")[0] == "/뮤트"):
-    if(message.author.guild_permissions.manage_channels):
-        try:
-            user = message.guild.get_member(int(message.content.split(' ')[1][3:21]))
-            await message.guild.get_channel(message.channel.category_id).set_permissions(user, send_messages=False)
-        except Exception as e:
-            await message.channel.send(embed=discord.Embed(title="에러 발생", description = str(e), color = 0xff0000))
-            return
-    else:
-        await message.channel.send(embed=discord.Embed(title="권한 부족", description = message.author.mention + "님은 채널을 관리 할 수 있는 권한이 없습니다.", color = 0xff0000))
-        return
-    if(message.content.split(" ")[0] == "/언뮤트"):
-    if(message.author.guild_permissions.manage_channels):
-        try:
-            user = message.guild.get_member(int(message.content.split(' ')[1][3:21]))
-            await message.guild.get_channel(message.channel.category_id).set_permissions(user, overwrite=None)
-            await message.channel.send(embed=discord.Embed(title="언뮤트 성공!", color = 0x00ff00))
-        except Exception as e:
-            await message.channel.send(embed=discord.Embed(title="에러 발생", description = str(e), color = 0xff0000))
-            return
-    else:
-        await message.channel.send(embed=discord.Embed(title="권한 부족", description = message.author.mention + "님은 채널을 관리 할 수 있는 권한이 없습니다.", color = 0xff0000))
-        return
-
-
 
 
 access_token = os.environ['BOT_TOKEN']
