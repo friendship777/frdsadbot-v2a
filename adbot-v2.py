@@ -24,7 +24,7 @@ async def on_ready():
         game = discord.Game("Made by 우정#9444")
         await client.change_presence(status=discord.Status.dnd, activity=game)
         await asyncio.sleep(3)
-        game = discord.Game("discord.gg/nEzPCjd")
+        game = discord.Game("https://discord.me/frdshub")
         await client.change_presence(status=discord.Status.dnd, activity=game)
         await asyncio.sleep(3)
         game = discord.Game("/도움 으로 명령어 확인")
@@ -60,6 +60,7 @@ async def on_message(message):
     if message.content.startswith('/디코주소'):
         channel = message.channel
         await channel.send('https://discord.gg/nEzPCjd')
+        await channel.send('https://discord.me/frdshub')
         await channel.send('**📊 Friendship hub** 의 공식 디스코드 주소입니다.')
     if message.content.startswith('/도움'):
         channel = message.channel
